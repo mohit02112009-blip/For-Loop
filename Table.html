@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table Generator</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #1d2671, #c33764);
+            color: #fff;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 420px;
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(14px);
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 24px;
+            font-size: 28px;
+        }
+
+        input {
+            width: 100%;
+            padding: 14px 16px;
+            border: none;
+            outline: none;
+            border-radius: 10px;
+            font-size: 16px;
+            margin-bottom: 16px;
+        }
+
+        input:focus {
+            box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.35);
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 10px;
+            background: #ffffff;
+            color: #c33764;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            background: #f3f3f3;
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.25);
+        }
+
+        #output {
+            margin-top: 24px;
+            padding: 18px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            font-size: 18px;
+            line-height: 1.8;
+            text-align: left;
+            min-height: 40px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Table Generator</h1>
+
+        <input type="number" id="num" placeholder="Enter your Number">
+        <button onclick="table()">Generate Table</button>
+
+        <div id="output"></div>
+    </div>
+
+    <script>
+        function table() {
+            let n = document.getElementById("num").value;
+            let result = "";
+
+            for (let i = 1; i <= 10; i++) {
+                result += `${n} × ${i} = ${n * i}<br>`;
+            }
+
+            document.getElementById("output").innerHTML = result;
+        }
+    </script>
+</body>
+
+</html>

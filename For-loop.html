@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <title>10 For Loop Projects • Beginner to Advanced</title>
+    <style>
+        /* =============================================
+       ADVANCED CSS - Professional Glassmorphism Design
+       ============================================= */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(145deg, #0b0c0f 0%, #1a1e2b 100%);
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem 1.5rem;
+            min-height: 100vh;
+        }
+
+        /* Main title */
+        .main-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(to right, #c0e0ff, #a0d0ff, #60b0ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+            text-align: center;
+            letter-spacing: -0.5px;
+        }
+
+        .subtitle {
+            color: #7f8fa0;
+            margin-bottom: 2.5rem;
+            text-align: center;
+            font-size: 1rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        /* Responsive grid */
+        .projects-grid {
+            max-width: 1400px;
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+        }
+
+        /* Glassmorphism card with gradient border */
+        .project-card {
+            flex: 1 1 380px;
+            min-width: 320px;
+            max-width: 480px;
+            background: linear-gradient(135deg, rgba(30, 35, 50, 0.7) 0%, rgba(15, 18, 28, 0.8) 100%);
+            backdrop-filter: blur(16px) saturate(180%);
+            -webkit-backdrop-filter: blur(16px) saturate(180%);
+            border-radius: 2.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 30px 50px rgba(0, 0, 0, 0.6), inset 0 0 20px rgba(255, 255, 255, 0.05);
+            padding: 1.8rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease, box-shadow 0.4s ease;
+            color: #e8edf5;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Animated gradient border on hover */
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #3a60b0, #1a3366, #0d1b3e, #2b4b8f);
+            border-radius: 2.5rem;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .project-card:hover::before {
+            opacity: 1;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 40px 65px rgba(0, 160, 255, 0.2), inset 0 0 25px rgba(255, 255, 255, 0.1);
+            border-color: rgba(100, 180, 255, 0.4);
+        }
+
+        /* Card header */
+        .project-header {
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            padding-bottom: 0.8rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .project-name {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(to right, #c0e0ff, #a0d0ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.3rem;
+        }
+
+        .project-desc {
+            font-size: 0.9rem;
+            color: #a0b5cc;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .level-badge {
+            font-size: 0.7rem;
+            background: #2f3b54;
+            padding: 0.2rem 0.8rem;
+            border-radius: 20px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .features {
+            font-size: 0.8rem;
+            color: #7f8fa0;
+            margin: 0.7rem 0 1.2rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .feature-badge {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 0.25rem 0.9rem;
+            border-radius: 20px;
+            font-weight: 500;
+            backdrop-filter: blur(4px);
+        }
+
+        /* Input fields styling */
+        .input-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-bottom: 1.2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        input,
+        select,
+        button {
+            background: rgba(10, 15, 25, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 2rem;
+            padding: 0.8rem 1.2rem;
+            color: white;
+            font-size: 0.95rem;
+            outline: none;
+            transition: all 0.25s;
+            font-family: inherit;
+        }
+
+        input:focus,
+        select:focus {
+            border-color: #5a9eff;
+            box-shadow: 0 0 15px #2f6bdc;
+            background: rgba(20, 30, 45, 0.8);
+        }
+
+        button {
+            background: linear-gradient(135deg, #2b4b8f, #1a3366);
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 6px 18px rgba(0, 100, 255, 0.35);
+            transition: 0.25s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.3rem;
+            letter-spacing: 0.3px;
+        }
+
+        button:hover {
+            background: linear-gradient(135deg, #3a60b0, #254488);
+            box-shadow: 0 10px 22px #1e4bcc;
+            transform: scale(1.02);
+        }
+
+        button:active {
+            transform: scale(0.98);
+        }
+
+        /* Output display area */
+        .output-area {
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(12px);
+            border-radius: 1.8rem;
+            padding: 1rem 1.2rem;
+            margin-top: 0.5rem;
+            font-family: 'Fira Code', 'Courier New', monospace;
+            font-size: 0.9rem;
+            color: #d4e6ff;
+            min-height: 3.5rem;
+            word-break: break-word;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            white-space: pre-wrap;
+            max-height: 200px;
+            overflow-y: auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Scrollbar styling */
+        .output-area::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .output-area::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+        }
+
+        .output-area::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+        }
+
+        hr {
+            margin: 1rem 0 0.5rem;
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Range input custom styling */
+        input[type="range"] {
+            -webkit-appearance: none;
+            appearance: none;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 10px;
+            padding: 0;
+            border: none;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 22px;
+            height: 22px;
+            background: #5a9eff;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 0 15px #2f6bdc;
+        }
+
+        /* Responsive design */
+        @media (max-width: 450px) {
+            .project-card {
+                padding: 1.5rem 1rem;
+                min-width: 280px;
+            }
+
+            .main-title {
+                font-size: 1.8rem;
+            }
+
+            input,
+            select,
+            button {
+                padding: 0.7rem 1rem;
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1 class="main-title">🔁 10 For Loop Projects</h1>
+    <p class="subtitle">Master JavaScript loops with practical examples • Beginner to Advanced</p>
+
+    <div class="projects-grid" id="projectContainer">
+        <!-- All projects will be generated here -->
+    </div>
+
+    <script>
+        // =============================================
+        // SIMPLE JAVASCRIPT - For Loop Based Projects
+        // Clear, commented, beginner-friendly code
+        // =============================================
+
+        // Wait for page to load
+        window.addEventListener('DOMContentLoaded', function () {
+            buildAllProjects();
+        });
+
+        // Build all 10 project cards
+        function buildAllProjects() {
+            var container = document.getElementById('projectContainer');
+            var html = '';
+
+            // Project 1: Number Printer (Beginner)
+            html += createCard(
+                'proj1',
+                '🔢 Number Printer',
+                'Print numbers from start to end using a for loop',
+                ['Range input', 'Step control', 'For loop iteration'],
+                'Beginner',
+                '<input type="number" id="p1-start" placeholder="Start" value="1" style="width:80px;">' +
+                '<input type="number" id="p1-end" placeholder="End" value="20" style="width:80px;">' +
+                '<button id="p1-print">Print Numbers</button>'
+            );
+
+            // Project 2: Multiplication Table (Beginner)
+            html += createCard(
+                'proj2',
+                '✖️ Multiplication Table',
+                'Generate multiplication table for any number',
+                ['Number input', 'For loop 1-20', 'Formatted output'],
+                'Beginner',
+                '<input type="number" id="p2-num" placeholder="Enter number" value="7" style="width:110px;">' +
+                '<button id="p2-gen">Generate Table</button>'
+            );
+
+            // Project 3: Sum of Numbers (Beginner)
+            html += createCard(
+                'proj3',
+                '➕ Sum Calculator',
+                'Calculate sum of all numbers from 1 to N',
+                ['Number input', 'For loop accumulation', 'Instant result'],
+                'Beginner',
+                '<input type="number" id="p3-num" placeholder="Enter N" value="100" style="width:100px;">' +
+                '<button id="p3-calc">Calculate Sum</button>'
+            );
+
+            // Project 4: Even Numbers Printer (Beginner)
+            html += createCard(
+                'proj4',
+                '👥 Even Number Printer',
+                'Print all even numbers in a given range',
+                ['Range input', 'Modulo operator %', 'Conditional check'],
+                'Beginner',
+                '<input type="number" id="p4-start" placeholder="Start" value="1" style="width:80px;">' +
+                '<input type="number" id="p4-end" placeholder="End" value="50" style="width:80px;">' +
+                '<button id="p4-print">Print Even Numbers</button>'
+            );
+
+            // Project 5: Factorial Calculator (Intermediate)
+            html += createCard(
+                'proj5',
+                '🧮 Factorial Calculator',
+                'Calculate factorial (n!) using for loop',
+                ['For loop multiplication', 'Big numbers', 'Range 1-20'],
+                'Intermediate',
+                '<input type="number" id="p5-num" placeholder="Enter n (1-20)" value="5" min="1" max="20" style="width:120px;">' +
+                '<button id="p5-calc">Calculate n!</button>'
+            );
+
+            // Project 6: Fibonacci Generator (Intermediate)
+            html += createCard(
+                'proj6',
+                '🌀 Fibonacci Series',
+                'Generate first N Fibonacci numbers',
+                ['For loop sequence', 'Array building', 'Dynamic length'],
+                'Intermediate',
+                '<input type="number" id="p6-count" placeholder="How many terms?" value="15" min="1" max="30" style="width:130px;">' +
+                '<button id="p6-gen">Generate Series</button>'
+            );
+
+            // Project 7: Prime Number Finder (Intermediate)
+            html += createCard(
+                'proj7',
+                '🔎 Prime Number Finder',
+                'Find all prime numbers in a range',
+                ['Nested for loops', 'Optimization', 'Range search'],
+                'Intermediate',
+                '<input type="number" id="p7-start" placeholder="Start" value="2" style="width:80px;">' +
+                '<input type="number" id="p7-end" placeholder="End" value="100" style="width:80px;">' +
+                '<button id="p7-find">Find Primes</button>'
+            );
+
+            // Project 8: Pattern Generator (Intermediate)
+            html += createCard(
+                'proj8',
+                '🔷 Pattern Generator',
+                'Draw star patterns using nested for loops',
+                ['Pyramid & Diamond', 'Rows slider', 'Visual output'],
+                'Intermediate',
+                '<select id="p8-type"><option value="pyramid">Pyramid</option><option value="diamond">Diamond</option><option value="square">Square</option></select>' +
+                '<input type="range" id="p8-rows" min="3" max="15" value="5" style="width:100px;">' +
+                '<span id="p8-label">5</span> rows' +
+                '<button id="p8-draw">Draw Pattern</button>'
+            );
+
+            // Project 9: Countdown Timer (Advanced)
+            html += createCard(
+                'proj9',
+                '⏳ Countdown Display',
+                'Countdown from N to 1 with delay',
+                ['For loop reverse', 'setInterval', 'Visual countdown'],
+                'Advanced',
+                '<input type="number" id="p9-start" placeholder="Start from" value="10" min="1" max="60" style="width:110px;">' +
+                '<input type="number" id="p9-delay" placeholder="Delay (ms)" value="500" min="100" max="2000" step="100" style="width:110px;">' +
+                '<button id="p9-start-countdown">Start Countdown</button>' +
+                '<button id="p9-stop">Stop</button>'
+            );
+
+            // Project 10: Word Repeater (Advanced)
+            html += createCard(
+                'proj10',
+                '📝 Word Repeater & Counter',
+                'Repeat text and count characters',
+                ['String input', 'For loop repetition', 'Character count'],
+                'Advanced',
+                '<input type="text" id="p10-word" placeholder="Enter word" value="Hello" style="width:100px;">' +
+                '<input type="number" id="p10-times" placeholder="Times" value="5" min="1" max="20" style="width:80px;">' +
+                '<button id="p10-repeat">Repeat & Count</button>'
+            );
+
+            container.innerHTML = html;
+
+            // Setup all projects
+            setupProject1();
+            setupProject2();
+            setupProject3();
+            setupProject4();
+            setupProject5();
+            setupProject6();
+            setupProject7();
+            setupProject8();
+            setupProject9();
+            setupProject10();
+        }
+
+        // Helper function to create project card HTML
+        function createCard(id, name, description, features, level, inputHTML) {
+            var featuresHTML = '';
+            for (var i = 0; i < features.length; i++) {
+                featuresHTML += '<span class="feature-badge">' + features[i] + '</span>';
+            }
+
+            return '<div class="project-card">' +
+                '<div class="project-header">' +
+                '<span class="project-name">' + name + '</span>' +
+                '<div class="project-desc">' + description + ' <span class="level-badge">' + level + '</span></div>' +
+                '<div class="features">' + featuresHTML + '</div>' +
+                '</div>' +
+                '<div class="input-group">' + inputHTML + '</div>' +
+                '<div id="output-' + id + '" class="output-area">⚡ Ready to run...</div>' +
+                '</div>';
+        }
+
+        // Helper function to get output element
+        function getOut(id) {
+            return document.getElementById('output-' + id);
+        }
+
+        // =============================================
+        // PROJECT 1: Number Printer
+        // Uses: Simple for loop to print numbers
+        // =============================================
+        function setupProject1() {
+            var btn = document.getElementById('p1-print');
+
+            btn.onclick = function () {
+                var start = parseInt(document.getElementById('p1-start').value);
+                var end = parseInt(document.getElementById('p1-end').value);
+
+                // Check if numbers are valid
+                if (isNaN(start) || isNaN(end)) {
+                    getOut('proj1').textContent = '❌ Please enter valid numbers';
+                    return;
+                }
+
+                // Build result using for loop
+                var result = '';
+                for (var i = start; i <= end; i = i + 1) {
+                    if (result !== '') {
+                        result = result + ', ';
+                    }
+                    result = result + i;
+                }
+
+                // Show output
+                if (result === '') {
+                    getOut('proj1').textContent = 'Start is greater than end. No numbers to print.';
+                } else {
+                    getOut('proj1').textContent = 'Numbers: ' + result;
+                }
+            };
+        }
+
+        // =============================================
+        // PROJECT 2: Multiplication Table
+        // Uses: For loop to generate table rows
+        // =============================================
+        function setupProject2() {
+            var btn = document.getElementById('p2-gen');
+
+            btn.onclick = function () {
+                var num = parseInt(document.getElementById('p2-num').value);
+
+                if (isNaN(num)) {
+                    getOut('proj2').textContent = '❌ Please enter a valid number';
+                    return;
+                }
+
+                // Generate table using for loop
+                var table = '';
+                for (var i = 1; i <= 20; i = i + 1) {
+                    table = table + num + ' × ' + i + ' = ' + (num * i) + '\n';
+                }
+
+                getOut('proj2').textContent = table;
+            };
+        }
+
+        // =============================================
+        // PROJECT 3: Sum Calculator
+        // Uses: For loop to accumulate sum
+        // =============================================
+        function setupProject3() {
+            var btn = document.getElementById('p3-calc');
+
+            btn.onclick = function () {
+                var n = parseInt(document.getElementById('p3-num').value);
+
+                if (isNaN(n) || n < 1) {
+                    getOut('proj3').textContent = '❌ Please enter a positive number';
+                    return;
+                }
+
+                // Calculate sum using for loop
+                var sum = 0;
+                for (var i = 1; i <= n; i = i + 1) {
+                    sum = sum + i;
+                }
+
+                getOut('proj3').textContent = 'Sum of numbers from 1 to ' + n + ' = ' + sum;
+            };
+        }
+
+        // =============================================
+        // PROJECT 4: Even Number Printer
+        // Uses: For loop with if condition
+        // =============================================
+        function setupProject4() {
+            var btn = document.getElementById('p4-print');
+
+            btn.onclick = function () {
+                var start = parseInt(document.getElementById('p4-start').value);
+                var end = parseInt(document.getElementById('p4-end').value);
+
+                if (isNaN(start) || isNaN(end)) {
+                    getOut('proj4').textContent = '❌ Please enter valid numbers';
+                    return;
+                }
+
+                // Find even numbers using for loop and modulo
+                var result = '';
+                var count = 0;
+
+                for (var i = start; i <= end; i = i + 1) {
+                    // Check if number is even
+                    if (i % 2 === 0) {
+                        if (result !== '') {
+                            result = result + ', ';
+                        }
+                        result = result + i;
+                        count = count + 1;
+                    }
+                }
+
+                if (count === 0) {
+                    getOut('proj4').textContent = 'No even numbers found in range ' + start + ' to ' + end;
+                } else {
+                    getOut('proj4').textContent = 'Even numbers (' + count + ' found):\n' + result;
+                }
+            };
+        }
+
+        // =============================================
+        // PROJECT 5: Factorial Calculator
+        // Uses: For loop for multiplication
+        // =============================================
+        function setupProject5() {
+            var btn = document.getElementById('p5-calc');
+
+            btn.onclick = function () {
+                var n = parseInt(document.getElementById('p5-num').value);
+
+                if (isNaN(n) || n < 1 || n > 20) {
+                    getOut('proj5').textContent = '❌ Please enter a number between 1 and 20';
+                    return;
+                }
+
+                // Calculate factorial using for loop
+                var factorial = 1;
+                var steps = '';
+
+                for (var i = 1; i <= n; i = i + 1) {
+                    factorial = factorial * i;
+                    if (i === 1) {
+                        steps = '1';
+                    } else {
+                        steps = steps + ' × ' + i;
+                    }
+                }
+
+                getOut('proj5').textContent = n + '! = ' + steps + ' = ' + factorial;
+            };
+        }
+
+        // =============================================
+        // PROJECT 6: Fibonacci Generator
+        // Uses: For loop to build sequence
+        // =============================================
+        function setupProject6() {
+            var btn = document.getElementById('p6-gen');
+
+            btn.onclick = function () {
+                var count = parseInt(document.getElementById('p6-count').value);
+
+                if (isNaN(count) || count < 1 || count > 30) {
+                    getOut('proj6').textContent = '❌ Please enter a number between 1 and 30';
+                    return;
+                }
+
+                // Generate Fibonacci using for loop
+                var fib = [0, 1];
+
+                for (var i = 2; i < count; i = i + 1) {
+                    // Each number is sum of previous two
+                    var next = fib[i - 1] + fib[i - 2];
+                    fib.push(next);
+                }
+
+                // Get only the requested number of terms
+                var result = fib.slice(0, count).join(', ');
+                getOut('proj6').textContent = 'First ' + count + ' Fibonacci numbers:\n' + result;
+            };
+        }
+
+        // =============================================
+        // PROJECT 7: Prime Number Finder
+        // Uses: Nested for loops to check primality
+        // =============================================
+        function setupProject7() {
+            var btn = document.getElementById('p7-find');
+
+            // Helper function to check if a number is prime
+            function checkPrime(n) {
+                if (n < 2) {
+                    return false;
+                }
+                // Check divisors up to square root
+                for (var i = 2; i * i <= n; i = i + 1) {
+                    if (n % i === 0) {
+                        return false;
+                    }
+                }
+                return true;
+            }
+
+            btn.onclick = function () {
+                var start = parseInt(document.getElementById('p7-start').value);
+                var end = parseInt(document.getElementById('p7-end').value);
+
+                if (isNaN(start) || isNaN(end) || start < 2) {
+                    getOut('proj7').textContent = '❌ Start must be at least 2';
+                    return;
+                }
+
+                // Find all primes in range using for loop
+                var primes = [];
+
+                for (var i = start; i <= end; i = i + 1) {
+                    if (checkPrime(i)) {
+                        primes.push(i);
+                    }
+                }
+
+                if (primes.length === 0) {
+                    getOut('proj7').textContent = 'No prime numbers found in range ' + start + ' to ' + end;
+                } else {
+                    getOut('proj7').textContent = 'Prime numbers (' + primes.length + ' found):\n' + primes.join(', ');
+                }
+            };
+        }
+
+        // =============================================
+        // PROJECT 8: Pattern Generator
+        // Uses: Nested for loops for patterns
+        // =============================================
+        function setupProject8() {
+            var btn = document.getElementById('p8-draw');
+            var slider = document.getElementById('p8-rows');
+            var label = document.getElementById('p8-label');
+
+            // Update label when slider moves
+            slider.oninput = function () {
+                label.textContent = slider.value;
+            };
+
+            btn.onclick = function () {
+                var rows = parseInt(slider.value);
+                var type = document.getElementById('p8-type').value;
+                var pattern = '';
+
+                if (type === 'pyramid') {
+                    // Pyramid pattern using for loops
+                    for (var i = 1; i <= rows; i = i + 1) {
+                        // Add spaces
+                        for (var s = 1; s <= rows - i; s = s + 1) {
+                            pattern = pattern + ' ';
+                        }
+                        // Add stars
+                        for (var j = 1; j <= 2 * i - 1; j = j + 1) {
+                            pattern = pattern + '*';
+                        }
+                        pattern = pattern + '\n';
+                    }
+                } else if (type === 'diamond') {
+                    // Diamond pattern
+                    // Top half
+                    for (var i = 1; i <= rows; i = i + 1) {
+                        for (var s = 1; s <= rows - i; s = s + 1) {
+                            pattern = pattern + ' ';
+                        }
+                        for (var j = 1; j <= 2 * i - 1; j = j + 1) {
+                            pattern = pattern + '*';
+                        }
+                        pattern = pattern + '\n';
+                    }
+                    // Bottom half
+                    for (var i = rows - 1; i >= 1; i = i - 1) {
+                        for (var s = 1; s <= rows - i; s = s + 1) {
+                            pattern = pattern + ' ';
+                        }
+                        for (var j = 1; j <= 2 * i - 1; j = j + 1) {
+                            pattern = pattern + '*';
+                        }
+                        pattern = pattern + '\n';
+                    }
+                } else if (type === 'square') {
+                    // Square pattern
+                    for (var i = 1; i <= rows; i = i + 1) {
+                        for (var j = 1; j <= rows; j = j + 1) {
+                            pattern = pattern + '* ';
+                        }
+                        pattern = pattern + '\n';
+                    }
+                }
+
+                getOut('proj8').textContent = pattern;
+            };
+        }
+
+        // =============================================
+        // PROJECT 9: Countdown Timer
+        // Uses: For loop concept with setInterval
+        // =============================================
+        function setupProject9() {
+            var startBtn = document.getElementById('p9-start-countdown');
+            var stopBtn = document.getElementById('p9-stop');
+            var timerId = null;
+            var currentCount = 0;
+
+            // Stop any running timer
+            function stopTimer() {
+                if (timerId !== null) {
+                    clearInterval(timerId);
+                    timerId = null;
+                }
+            }
+
+            stopBtn.onclick = function () {
+                stopTimer();
+                getOut('proj9').textContent = '⏹ Countdown stopped at ' + currentCount;
+            };
+
+            startBtn.onclick = function () {
+                stopTimer(); // Stop existing timer
+
+                var startNum = parseInt(document.getElementById('p9-start').value);
+                var delay = parseInt(document.getElementById('p9-delay').value);
+
+                if (isNaN(startNum) || startNum < 1) {
+                    getOut('proj9').textContent = '❌ Please enter a valid starting number';
+                    return;
+                }
+
+                if (isNaN(delay) || delay < 100) {
+                    delay = 500; // Default delay
+                }
+
+                currentCount = startNum;
+                getOut('proj9').textContent = '🔴 Countdown: ' + currentCount;
+
+                // Use setInterval to simulate countdown (for loop concept with timing)
+                timerId = setInterval(function () {
+                    currentCount = currentCount - 1;
+
+                    if (currentCount <= 0) {
+                        getOut('proj9').textContent = '🚀 Blast off! Countdown complete!';
+                        stopTimer();
+                    } else {
+                        // Build visual countdown bar
+                        var bar = '';
+                        for (var i = 1; i <= currentCount; i = i + 1) {
+                            bar = bar + '▮';
+                        }
+                        getOut('proj9').textContent = '🔴 Countdown: ' + currentCount + '\n' + bar;
+                    }
+                }, delay);
+            };
+        }
+
+        // =============================================
+        // PROJECT 10: Word Repeater & Character Counter
+        // Uses: For loop for string repetition and counting
+        // =============================================
+        function setupProject10() {
+            var btn = document.getElementById('p10-repeat');
+
+            btn.onclick = function () {
+                var word = document.getElementById('p10-word').value.trim();
+                var times = parseInt(document.getElementById('p10-times').value);
+
+                if (word === '') {
+                    getOut('proj10').textContent = '❌ Please enter a word';
+                    return;
+                }
+
+                if (isNaN(times) || times < 1 || times > 20) {
+                    getOut('proj10').textContent = '❌ Please enter times between 1 and 20';
+                    return;
+                }
+
+                // Repeat the word using for loop
+                var repeated = '';
+                for (var i = 1; i <= times; i = i + 1) {
+                    repeated = repeated + word;
+                    // Add space between words except for last one
+                    if (i < times) {
+                        repeated = repeated + ' ';
+                    }
+                }
+
+                // Count total characters (without spaces)
+                var charCount = 0;
+                for (var j = 0; j < repeated.length; j = j + 1) {
+                    if (repeated[j] !== ' ') {
+                        charCount = charCount + 1;
+                    }
+                }
+
+                // Count each letter occurrence
+                var letterCount = {};
+                for (var k = 0; k < word.length; k = k + 1) {
+                    var letter = word[k].toLowerCase();
+                    if (letterCount[letter] === undefined) {
+                        letterCount[letter] = 1;
+                    } else {
+                        letterCount[letter] = letterCount[letter] + 1;
+                    }
+                }
+
+                // Build letter count display
+                var letterDisplay = '';
+                for (var key in letterCount) {
+                    letterDisplay = letterDisplay + key + ':' + letterCount[key] + ' ';
+                }
+
+                getOut('proj10').textContent =
+                    'Repeated text:\n' + repeated +
+                    '\n\n📊 Statistics:' +
+                    '\n• Words: ' + times +
+                    '\n• Total characters (no spaces): ' + charCount +
+                    '\n• Characters with spaces: ' + repeated.length +
+                    '\n• Letter frequency: ' + letterDisplay;
+            };
+        }
+    </script>
+</body>
+
+</html>
